@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { AppService } from '../app.service';
 import { HomeService } from './home.service';
 import { NotificationService } from './../notification.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 export interface DialogData {
   name: string;
@@ -30,18 +29,11 @@ export class HomeComponent implements OnInit {
   points: number;
 
   constructor(
-    private appService: AppService,
-    private homeService: HomeService,
-    private router: Router,
     public dialog: MatDialog
   ) {
-    if (this.appService.getUser() == null) {
-      this.router.navigate(['login']);
-    }
   }
 
   ngOnInit(): void {
-    let data = this.homeService.fetchData();
   }
 
   isEmptyObject(obj): boolean {
@@ -66,11 +58,15 @@ export class CreateTaskDialog {
     public dialogRef: MatDialogRef<HomeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private notifyService: NotificationService,
+    private homeService: HomeService,
   ) { }
 
   createTask(data): void {
     console.log('Creating task');
     console.log(data);
+    console.log("Let's say hello to a Solana account...");
+
+    this.homeService.createTask(data.name, data.lat, data.lng, data.desc, data.points);
     this.showToasterSuccess('Successfully Created Task', '');
   }
 

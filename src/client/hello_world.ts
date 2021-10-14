@@ -67,15 +67,10 @@ class Task {
 	lng = '124';
 	points = "100";
 	desc = 'this is a long description';
-	completedBy = 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNaba';
-	category = 'Category';
-	icon = 'test icon';
-	company = 'apple';
-	isMultiplayer = 'false';
-	var1 = '1';
+	completedBy = '00000000000000000000000000000000000000000000';
 
 
-	constructor(fields: {name: string, lat: string, lng: string, points: string, desc: string, completedBy: string, category: string, icon: string, company: string, isMultiplayer: string, var1: string}) {
+	constructor(fields: {name: string, lat: string, lng: string, points: string, desc: string, completedBy: string}) {
 		if(fields) {
 			this.name = fields.name;
 			this.lat = fields.lat;
@@ -83,11 +78,6 @@ class Task {
 			this.points = fields.points;
 			this.desc = fields.desc;
 			this.completedBy = fields.completedBy;
-			this.category = fields.category;
-			this.icon = fields.icon;
-			this.company = fields.company;
-			this.isMultiplayer = fields.isMultiplayer;
-			this.var1 = fields.var1;
 		}
 	}
 
@@ -97,7 +87,7 @@ class Task {
  * Borsh schema definition for greeting accounts
  */
 const TaskSchema = new Map([
-	[Task, {kind: 'struct', fields: [['name', 'String'], ['lat', 'String'], ['lng', 'String'], ['points', 'String'], ['desc', 'String'], ['completedBy', 'String'], ['category', 'String'], ['icon', 'String'], ['company', 'String'], ['isMultiplayer', 'String'], ['var1', 'String']]}],
+	[Task, {kind: 'struct', fields: [['name', 'String'], ['lat', 'String'], ['lng', 'String'], ['points', 'String'], ['desc', 'String'], ['completedBy', 'String']]}],
 ]);
 
 /**
@@ -193,7 +183,7 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 	);
 
 
-	let TASK_SIZE = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9', category: 'Phones and more more and more', icon: 's3://file.jpeg', company: 'Apple Macintonh ooh ooh ooh ooh ooh ooh ooh ooh ooh ooh', isMultiplayer: 'true', var1: '1'})).length;
+	let TASK_SIZE = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'})).length;
 
 	//let TASK_SIZE = 0;
 	// Check if the task account has already been created
@@ -231,7 +221,7 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 
 export async function createTask(name: string, lat: string, lng: string, points: string, desc: string, category: string, icon: string, company: string, isMultiplayer: string): Promise<void> {
 
-	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9', category: 'Phones', icon: 's3://file.jpeg', company: 'Apple Macintonh ooh ooh ooh ooh ooh ooh ooh ooh ooh', isMultiplayer: 'true', var1: '1'}));
+	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'}));
 
 
 	//let TASK = borsh.serialize(TaskSchema, new Task({points: points}));
@@ -252,7 +242,7 @@ export async function createTask(name: string, lat: string, lng: string, points:
 
 export async function completeTask(name: string, lat: string, lng: string, points: string, desc: string): Promise<void> {
 
-	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9', category: 'Phones', icon: 's3://file.jpeg', company: 'Apple Macintonh ooh ooh ooh ooh ooh ooh ooh ooh ooh', isMultiplayer: 'true', var1: '1'}));
+	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'}));
 
 
 	//let TASK = borsh.serialize(TaskSchema, new Task({points: points}));

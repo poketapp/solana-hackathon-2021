@@ -11,27 +11,18 @@ use solana_program::{
 
 #[derive(BorshSerialize, BorshDeserialize, Debug, Hash, Eq, PartialEq)]
 pub struct Task {
-    /// The public key of the account that is creatng this task
-    ///pub account_public_key: Vec<u8>,
-    /// A public key to represent the task
-    ///pub task_public_key: Vec<u8>,
     /// A user-friendly name of the task
     pub name: String,
     /// Latitude of the task
     pub lat: String,
     /// Longitude of the task
     pub lng: String,
-    /// Points the task is worth
+    /// Points that the task is worth
     pub points: String,
     /// Description of the task
     pub desc: String,
     /// The public key of the account that is completing the task
     pub completedBy: String,
-    pub icon: String,
-    pub cateogry: String,
-    pub isMultiplayer: String,
-    pub company: String,
-    pub var1: String,
 }
 
 
@@ -59,24 +50,7 @@ pub fn process_instruction(
     }
 
     let mut request = Task::try_from_slice(_instruction_data)?;
-    //request.completedBy = "AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNaba".to_string();
-    //request.points = "500".to_string();
-
-    msg!("Request is {}", &request.points);
-
-    //request.points = 500;
-    //msg!("And now it is {}", request.points);
-    //msg!(&request.points);
-
-    // Increment and store the number of times the account has been greeted
-    //let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
-    //greeting_account.counter += 1;
-    //greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
-
-    //msg!(account.data);
     request.serialize(&mut &mut account.data.borrow_mut()[..])?;
-
-    //msg!("Task completed by {}", &request.completedBy);
 
     Ok(())
 }

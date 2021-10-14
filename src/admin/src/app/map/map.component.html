@@ -1,0 +1,27 @@
+<agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng" [styles]='mapStyles'>
+  <agm-marker
+    *ngFor="let marker of markers"
+    [latitude]="marker.latitude"
+    [longitude]="marker.longitude"
+    (markerClick)="markerClicked(marker, infoWindow)"
+    iconUrl="assets/markers/{{ marker.marker }}.png"
+  >
+    <agm-info-window [disableAutoPan]="false" #infoWindow class="container">
+      <div class="row merchant-detail">
+        <div class="col-sm-6">
+          <div class="merchant-image-container">
+            <img class="merchant-image" src="{{ imgSrc }}" />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <h5>{{ marker.name }}</h5>
+          <p *ngFor="let elem of marker.data">
+            <i class="fa {{ elem.icon }}"></i>&nbsp;&nbsp;<span
+              >{{ elem.label }}:&nbsp;&nbsp;{{ elem.data }}</span
+            >
+          </p>
+        </div>
+      </div>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

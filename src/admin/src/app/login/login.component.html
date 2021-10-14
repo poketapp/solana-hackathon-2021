@@ -1,0 +1,49 @@
+<div class="row h-100 d-flex align-items-center justify-content-md-center login-container">
+  <div class="col-md-6">
+    <div class="login-banner">
+      <h1>Welcome to Your Portal</h1>
+      <h2>Setup tasks and view participation</h2>
+    </div>
+    <div class="login-form">
+      <h3>Login to your account</h3>
+      <div *ngIf="msg.length > 0" ngClass="alert alert-danger">{{ msg }}</div>
+      <form (ngSubmit)="loginForm.form.valid && onSubmit()" #loginForm="ngForm" novalidate>
+        <div class="form-group">
+          <input id="username" type="text" placeholder="Username" [(ngModel)]="model.username" #username="ngModel"
+            [ngClass]="{
+              'is-invalid': loginForm.submitted && username.invalid
+            }" name="username" required />
+          <div *ngIf="
+              loginForm.submitted &&
+              username.invalid &&
+              username.errors.required
+            " class="invalid-feedback">
+            Username is required
+          </div>
+        </div>
+        <div class="form-group">
+          <input id="password" type="{{ hidePassword ? 'password' : 'tel' }}" placeholder="Password"
+            [(ngModel)]="model.password" #password="ngModel" [ngClass]="{
+              'is-invalid': loginForm.submitted && password.invalid
+            }" name="password" required />
+          <div *ngIf="
+              loginForm.submitted &&
+              password.invalid &&
+              password.errors.required
+            " class="invalid-feedback">
+            Password is required
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" mat-raised-button [disabled]="!loginForm.form.valid || loggingIn" color="primary">
+            LOGIN
+          </button>
+          <img *ngIf="loggingIn"
+            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          <br />
+          <a mat-button color="warn" href="mailto:contact@poketapp.com?subject=Trouble logging in">Having Trouble?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<mat-sidenav-container fullscreen>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div>
+      </div>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button aria-label="Logout" *ngIf="isLoggedIn" (click)="logout()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>
+<div class="loading-overlay" *ngIf="showOverlay">
+  <mat-spinner color="primary"></mat-spinner>
+</div>

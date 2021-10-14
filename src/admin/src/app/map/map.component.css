@@ -1,0 +1,25 @@
+agm-map {
+  height: 500px;
+}
+
+.merchant-detail {
+  color: #333333;
+  padding: 1.25em;
+}
+div.merchant-image-container {
+  position: relative;
+  text-align: center;
+}
+
+img.merchant-image {
+  height: 100%;
+  width: 100%;
+}
+
+i.fa {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+i.fa-check-circle-o {
+  color: #55a6da;
+}

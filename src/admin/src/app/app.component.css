@@ -1,0 +1,59 @@
+p {
+  font-family: Lato;
+}
+
+.mat-toolbar {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  min-height: 100vh;
+  overflow: auto;
+}
+
+/* To handle pretty big screens */
+
+@media (min-width: 1500px) {
+  .container {
+    max-width: 1350px;
+  }
+}
+
+.toolbar-logo {
+  height: 48px;
+  padding: 6px;
+}
+
+.navbar-brand {
+  margin: auto;
+  display: block;
+}
+
+.loading-overlay {
+  left: 0 !important;
+  top: 0 !important;
+  z-index: 10000 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  cursor: pointer !important;
+  visibility: visible !important;
+  transition: visibility 0s, opacity 0.4s linear !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: wait !important;
+}
+
+.defaultBtn {
+  background-color: #039b6e;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+}

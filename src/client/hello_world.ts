@@ -103,10 +103,8 @@ export async function establishConnection(): Promise<void> {
 /**
  * Establish an account to pay for everything
  */
-export async function establishPayer(name: string, lat: string, lng: string, points: string, desc: string): Promise<void> {
+export async function establishPayer(): Promise<void> {
 	let fees = 0;
-
-	//let TASK_SIZE = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'})).length;
 
 	let TASK_SIZE = 0;
 	if (!payer) {
@@ -172,7 +170,6 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 	console.log(`Using program ${programId.toBase58()}`);
 
 
-	//let SEED = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9', category: 'Phones and more more and more', icon: 's3://file.jpeg', company: 'Apple Macintonh ooh ooh ooh ooh ooh ooh ooh ooh ooh ooh', isMultiplayer: 'true', var1: '1'}));
 	// Derive the address (public key) of a task account from the program so that it's easy to find later. 
 	let SEED = ""; //[name, lat, lng].join("");
 
@@ -183,9 +180,8 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 	);
 
 
-	let TASK_SIZE = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'})).length;
+	let TASK_SIZE = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: '00000000000000000000000000000000000000000000'})).length;
 
-	//let TASK_SIZE = 0;
 	// Check if the task account has already been created
 	const taskAccount = await connection.getAccountInfo(taskPubkey);
 	if (taskAccount === null) {
@@ -216,16 +212,13 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 }
 
 /*
- * Complete / capture task
+ * Create task
  */
 
-export async function createTask(name: string, lat: string, lng: string, points: string, desc: string, category: string, icon: string, company: string, isMultiplayer: string): Promise<void> {
+export async function createTask(name: string, lat: string, lng: string, points: string, desc: string): Promise<void> {
 
-	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'}));
+	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: '00000000000000000000000000000000000000000000'}));
 
-
-	//let TASK = borsh.serialize(TaskSchema, new Task({points: points}));
-	//let TASK = borsh.serialize(TaskSchema, new Task({points: points}));
 	const instructionData = Buffer.alloc(TASK.length);
 
 	instructionData.fill(TASK);
@@ -239,14 +232,14 @@ export async function createTask(name: string, lat: string, lng: string, points:
 }
 
 
-
+/*
+ * Complete Task
+ */
 export async function completeTask(name: string, lat: string, lng: string, points: string, desc: string): Promise<void> {
 
-	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'}));
+	let addr = payer.publicKey.toBase58();
+	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: addr}));
 
-
-	//let TASK = borsh.serialize(TaskSchema, new Task({points: points}));
-	//let TASK = borsh.serialize(TaskSchema, new Task({points: points}));
 	const instructionData = Buffer.alloc(TASK.length);
 
 	instructionData.fill(TASK);
@@ -263,7 +256,6 @@ export async function completeTask(name: string, lat: string, lng: string, point
 /**
  * Get the task from on-chain
  */
-
 export async function readTask(): Promise<void> {
 	const taskInfo = await connection.getAccountInfo(taskPubkey);
 	if(taskInfo === null) {

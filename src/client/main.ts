@@ -6,6 +6,7 @@ import {
 	establishConnection,
 	establishPayer,
 	checkProgram,
+	createTask,
 	completeTask,
 	readTask,
 } from './hello_world';
@@ -17,24 +18,23 @@ async function main() {
 	await establishConnection();
 
 	// Determine who pays for the fees
-
-	await establishPayer('Test task', '123', '124', '100', 'this is a long description');
+	await establishPayer();
 
 
 	// Check if the program has been deployed
-	await checkProgram('Test task', '123', '124', '100', 'this is a long description');
-
-	console.log('about to complete task');
-	// Complete task
-	//	await completeTask();
-
-	await completeTask('Test task', '123', '124', '100', 'this is a long description');
-
-	console.log('about to read task');
-	// Read task
+	await checkProgram('Solana Task', '78.1', '77.0', '250', 'This is a test task for the Solana Hackathon');
+	
+	console.log('Creating Task');
+	await createTask('Solana Task', '78.1', '77.0', '250', 'This is a test task for the Solana Hackathon');
+	
+	console.log('Reading Task');
 	await readTask();
 
-	console.log('Done reading task');
+	console.log('Completing task');
+	await completeTask('Solana Task', '78.1', '77.0', '250', 'This is a test task for the Solana Hackathon');
+
+	console.log('Reading Task');
+	await readTask();
 
 	console.log('Success');
 }

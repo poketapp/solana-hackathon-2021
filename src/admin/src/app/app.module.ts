@@ -35,7 +35,7 @@ import { AverageOfTwoNumbersPipe } from './utils';
     NgbModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBhDo9jlJk4lkT9Yl_g5qOo3SrXQQs7hO4',
+      apiKey: 'AIzaSyBlqtYmz7dEex_cm5iRIy1xc6SUMo6Qv7A',
     }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },

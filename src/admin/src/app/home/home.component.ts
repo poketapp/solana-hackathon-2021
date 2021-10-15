@@ -97,4 +97,19 @@ export class CreateTaskDialog {
   showToasterWarning(title: string, body: string): void {
     this.notifyService.showWarning(title, body);
   }
+
+  onFileSelected() {
+    const inputNode: any = document.querySelector('#file');
+
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        const srcResult = e.target.result;
+        console.log('srcResult is' + srcResult);
+      };
+
+      reader.readAsArrayBuffer(inputNode.files[0]);
+    }
+  }
 }

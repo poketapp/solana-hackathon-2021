@@ -23,6 +23,7 @@ pub struct Task {
     pub desc: String,
     /// The public key of the account that is completing the task
     pub completedBy: String,
+    pub image: String,
 }
 
 

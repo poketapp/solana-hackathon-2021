@@ -1,31 +1,36 @@
 <h1 mat-dialog-title>Create Task</h1>
 <div mat-dialog-content style="display: flex; flex-direction: column">
-    <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="data.name">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name" />
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Latitude</mat-label>
-        <input matInput [(ngModel)]="data.lat">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Latitude</mat-label>
+    <input matInput [(ngModel)]="data.lat" />
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Longitude</mat-label>
-        <input matInput [(ngModel)]="data.lng">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Longitude</mat-label>
+    <input matInput [(ngModel)]="data.lng" />
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <input matInput [(ngModel)]="data.desc">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="data.desc" />
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Points</mat-label>
-        <input matInput [(ngModel)]="data.points">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Points</mat-label>
+    <input matInput [(ngModel)]="data.points" />
+  </mat-form-field>
+
+  <button type="button" mat-raised-button (click)="fileInput.click()">
+    Choose Image
+  </button>
+  <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" />
 </div>
 <div mat-dialog-actions style="display: flex; justify-content: space-between">
-    <button mat-button mat-dialog-close (click)="createTask(data)">Create</button>
-    <button mat-button mat-dialog-close (click)="closeDialog()">Cancel</button>
+  <button mat-button mat-dialog-close (click)="createTask(data)">Create</button>
+  <button mat-button mat-dialog-close (click)="closeDialog()">Cancel</button>
 </div>

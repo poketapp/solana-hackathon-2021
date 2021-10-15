@@ -1,6 +1,5 @@
 import { Component, Input, SimpleChange } from '@angular/core';
 import { AgmInfoWindow } from '@agm/core';
-import { MapService } from './map.service';
 
 @Component({
   selector: 'app-map',
@@ -20,7 +19,7 @@ export class MapComponent {
 
   @Input() markers;
 
-  constructor(private mapService: MapService) {
+  constructor() {
     this.currentIW = null;
     this.previousIW = null;
   }

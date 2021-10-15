@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
   desc: string;
   points: number;
 
+  public markersInputToChild: Array<any>;
+
   constructor(
     public dialog: MatDialog,
     private homeServce: HomeService,
@@ -40,6 +42,7 @@ export class HomeComponent implements OnInit {
       console.log('TASK IS');
       console.log(data);
       this.markers.push({ latitude: data.lat, longitude: data.lng });
+      this.markersInputToChild = this.markers;
     });
   }
 

@@ -261,8 +261,7 @@ export async function readTask(): Promise<void> {
 	if (taskInfo === null) {
 		throw 'Error: cannot find the task account';
 	}
-	console.log('task is');
-	console.log(taskInfo.data.length);
+	console.log('task with publickey ');
 	const task = borsh.deserializeUnchecked(TaskSchema, Task, taskInfo.data);
 	console.log(taskPubkey.toBase58(), 'is', task);
 }

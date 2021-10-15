@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     this.homeServce.taskCreated.subscribe((data) => {
       console.log('TASK IS');
       console.log(data);
-      this.markers.push({ latitude: data.lat, longitude: data.lng, img: data.img, name: data.name });
+      this.markers.push({ latitude: data.lat, longitude: data.lng, img: data.img, name: data.name, desc: data.desc, points: data.points });
       this.markersInputToChild = this.markers;
     });
   }

@@ -10,16 +10,12 @@
       <div class="row merchant-detail">
         <div class="col-sm-6">
           <div class="merchant-image-container">
-            <img class="merchant-image" src="{{ imgSrc }}" />
+            <img class="merchant-image" src="{{ marker.img }}" />
           </div>
         </div>
         <div class="col-sm-6">
           <h5>{{ marker.name }}</h5>
-          <p *ngFor="let elem of marker.data">
-            <i class="fa {{ elem.icon }}"></i>&nbsp;&nbsp;<span
-              >{{ elem.label }}:&nbsp;&nbsp;{{ elem.data }}</span
-            >
-          </p>
+          <h4>{{ marker.lat }}, {{ marker.lng }}</h4>
         </div>
       </div>
     </agm-info-window>

@@ -1,23 +1,32 @@
-import { Injectable, Directive } from '@angular/core';
+import { Injectable, Directive, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  createTask,
-  readTask,
-} from './../../client/hello_world';
 
 @Directive()
 @Injectable()
 export class HomeService {
   constructor(private http: HttpClient) { }
 
+  @Output() taskCreated = new EventEmitter();
+
   async createTask(name, lat, lng, desc, points) {
-    console.log('Creating Task');
-    await createTask(name, lat, lng, points, desc);
+    const data = {
+      'name': name,
+      'lat': lat,
+      'lng': lng,
+      'points': points,
+      'desc': desc
+    }
 
-    console.log('Task Created');
-
-    await readTask();
-    console.log('Task READ');
+    const url = 'localhost:3000/create';
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+    };
+    this.http
+      .post(url, JSON.stringify(data), options)
+      .subscribe((res) => {
+        console.log(res);
+        this.taskCreated.emit(data);
+      });
   };
 
 }

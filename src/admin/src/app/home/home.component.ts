@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 
 import { HomeService } from './home.service';
 import { NotificationService } from './../notification.service';
+
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -29,11 +30,17 @@ export class HomeComponent implements OnInit {
   points: number;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private homeServce: HomeService,
   ) {
   }
 
   ngOnInit(): void {
+    this.homeServce.taskCreated.subscribe((data) => {
+      console.log('TASK IS');
+      console.log(data);
+      this.markers.push({ latitude: data.lat, longitude: data.lng });
+    });
   }
 
   isEmptyObject(obj): boolean {
@@ -62,12 +69,10 @@ export class CreateTaskDialog {
   ) { }
 
   createTask(data): void {
-    console.log('Creating task');
-    console.log(data);
-    console.log("Let's say hello to a Solana account...");
+    this.homeService.createTask(data.name, data.lat, data.lng, data.desc, data.points).finally(() => {
+      this.showToasterSuccess('Successfully Created Task', '');
+    })
 
-    this.homeService.createTask(data.name, data.lat, data.lng, data.desc, data.points);
-    this.showToasterSuccess('Successfully Created Task', '');
   }
 
   closeDialog(): void {

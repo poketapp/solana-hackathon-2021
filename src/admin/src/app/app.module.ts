@@ -19,7 +19,6 @@ import { LoginComponent } from './login/login.component';
 import { CreateTaskDialog } from './home/home.component';
 
 import { AppService } from './app.service';
-import { ApiService } from './api.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PoketMaterialModule } from './material-module';
@@ -60,7 +59,6 @@ import { AverageOfTwoNumbersPipe } from './utils';
     NotificationService,
     MapService,
     AppService,
-    ApiService,
     HTTPListener,
     HTTPStatus,
     {

@@ -11,6 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/client/main.ts",
+    "setup": "ts-node src/client/setup.ts",
     "start-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://localhost:8899/health start",
     "lint": "eslint --ext .ts src/client/* && prettier --check \"src/client/**/*.ts\"",
     "lint:fix": "eslint --ext .ts src/client/* --fix && prettier --write \"src/client/**/*.ts\"",

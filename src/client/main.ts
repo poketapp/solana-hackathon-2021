@@ -23,10 +23,10 @@ async function main() {
 
 	// Check if the program has been deployed
 	await checkProgram('Solana Task', '78.1', '77.0', '250', 'This is a test task for the Solana Hackathon');
-	
+
 	console.log('Creating Task');
 	await createTask('Solana Task', '78.1', '77.0', '250', 'This is a test task for the Solana Hackathon');
-	
+
 	console.log('Reading Task');
 	await readTask();
 
@@ -41,7 +41,7 @@ async function main() {
 
 main().then(
 	() => process.exit(),
-		err => {
+	err => {
 		console.error(err);
 		process.exit(-1);
 	},

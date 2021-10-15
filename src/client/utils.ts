@@ -67,13 +67,3 @@ export async function createKeypairFromFile(
   const secretKey = Uint8Array.from(JSON.parse(secretKeyString));
   return Keypair.fromSecretKey(secretKey);
 }
-
-export const toBuffer = (arr: Buffer | Uint8Array | Array<number>): Buffer => {
-	  if (Buffer.isBuffer(arr)) {
-		      return arr;
-		        } else if (arr instanceof Uint8Array) {
-				    return Buffer.from(arr.buffer, arr.byteOffset, arr.byteLength);
-				      } else {
-					          return Buffer.from(arr);
-						    }
-};

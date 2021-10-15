@@ -21,7 +21,6 @@
     "bootstrap": "~4.6.0",
     "express": "~4.17.1",
     "file-saver": "~2.0.5",
-    "fs": "~0.0.1-security",
     "https": "~1.0.0",
     "jasmine-core": "~3.8.0",
     "jasmine-marbles": "~0.9.0",
@@ -74,7 +73,15 @@
     "pretty-quick": "^3.1.1",
     "protractor": "~7.0.0",
     "ts-node": "~9.1.1",
-    "typescript": "4.1.6"
+    "typescript": "4.1.6",
+    "@types/mz": "^2.7.2",
+    "@types/prettier": "^2.1.5",
+    "@types/yaml": "^1.9.7",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/eslint": "^7.2.4",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "start-server-and-test": "^1.11.6"
   },
   "husky": {
     "hooks": {
@@ -85,5 +92,13 @@
   "lint-staged": {
     "*.ts": "eslint --cache --fix",
     "*.{js,css,md,jsx,json,html}": "prettier --write"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }

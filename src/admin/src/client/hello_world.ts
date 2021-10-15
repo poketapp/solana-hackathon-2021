@@ -15,9 +15,7 @@ import fs from 'mz/fs';
 import path from 'path';
 import * as borsh from 'borsh';
 
-import * as BufferLayout from '@solana/buffer-layout';
-
-import {getPayer, getRpcUrl, createKeypairFromFile, toBuffer} from './utils';
+import { getPayer, getRpcUrl, createKeypairFromFile } from './utils';
 
 /**
  * Connection to the network
@@ -60,7 +58,7 @@ const PROGRAM_KEYPAIR_PATH = path.join(PROGRAM_PATH, 'helloworld-keypair.json');
 
 /* 
  * The state of task managed by the program
- */ 
+ */
 class Task {
 	name = 'Test task';
 	lat = '123';
@@ -69,9 +67,8 @@ class Task {
 	desc = 'this is a long description';
 	completedBy = '00000000000000000000000000000000000000000000';
 
-
-	constructor(fields: {name: string, lat: string, lng: string, points: string, desc: string, completedBy: string}) {
-		if(fields) {
+	constructor(fields: { name: string, lat: string, lng: string, points: string, desc: string, completedBy: string }) {
+		if (fields) {
 			this.name = fields.name;
 			this.lat = fields.lat;
 			this.lng = fields.lng;
@@ -87,7 +84,7 @@ class Task {
  * Borsh schema definition for greeting accounts
  */
 const TaskSchema = new Map([
-	[Task, {kind: 'struct', fields: [['name', 'String'], ['lat', 'String'], ['lng', 'String'], ['points', 'String'], ['desc', 'String'], ['completedBy', 'String']]}],
+	[Task, { kind: 'struct', fields: [['name', 'String'], ['lat', 'String'], ['lng', 'String'], ['points', 'String'], ['desc', 'String'], ['completedBy', 'String']] }],
 ]);
 
 /**
@@ -106,9 +103,9 @@ export async function establishConnection(): Promise<void> {
 export async function establishPayer(): Promise<void> {
 	let fees = 0;
 
-	let TASK_SIZE = 0;
+	const TASK_SIZE = 0;
 	if (!payer) {
-		const {feeCalculator} = await connection.getRecentBlockhash();
+		const { feeCalculator } = await connection.getRecentBlockhash();
 
 		// Calculate the cost to fund the greeter account
 		fees += await connection.getMinimumBalanceForRentExemption(TASK_SIZE);
@@ -171,7 +168,7 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 
 
 	// Derive the address (public key) of a task account from the program so that it's easy to find later. 
-	let SEED = ""; //[name, lat, lng].join("");
+	const SEED = "";
 
 	taskPubkey = await PublicKey.createWithSeed(
 		payer.publicKey,
@@ -180,7 +177,7 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 	);
 
 
-	let TASK_SIZE = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: '00000000000000000000000000000000000000000000'})).length;
+	const TASK_SIZE = borsh.serialize(TaskSchema, new Task({ name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: '00000000000000000000000000000000000000000000' })).length;
 
 	// Check if the task account has already been created
 	const taskAccount = await connection.getAccountInfo(taskPubkey);
@@ -217,14 +214,14 @@ export async function checkProgram(name: string, lat: string, lng: string, point
 
 export async function createTask(name: string, lat: string, lng: string, points: string, desc: string): Promise<void> {
 
-	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: '00000000000000000000000000000000000000000000'}));
+	const TASK = borsh.serialize(TaskSchema, new Task({ name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: '00000000000000000000000000000000000000000000' }));
 
 	const instructionData = Buffer.alloc(TASK.length);
 
 	instructionData.fill(TASK);
 
 	const instruction = new TransactionInstruction({
-		keys: [{pubkey: taskPubkey, isSigner: false, isWritable: true}],
+		keys: [{ pubkey: taskPubkey, isSigner: false, isWritable: true }],
 		programId,
 		data: instructionData,
 	});
@@ -237,15 +234,15 @@ export async function createTask(name: string, lat: string, lng: string, points:
  */
 export async function completeTask(name: string, lat: string, lng: string, points: string, desc: string): Promise<void> {
 
-	let addr = payer.publicKey.toBase58();
-	let TASK = borsh.serialize(TaskSchema, new Task({name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: addr}));
+	const addr = payer.publicKey.toBase58();
+	const TASK = borsh.serialize(TaskSchema, new Task({ name: name, lat: lat, lng: lng, points: points, desc: desc, completedBy: addr }));
 
 	const instructionData = Buffer.alloc(TASK.length);
 
 	instructionData.fill(TASK);
 
 	const instruction = new TransactionInstruction({
-		keys: [{pubkey: taskPubkey, isSigner: false, isWritable: true}],
+		keys: [{ pubkey: taskPubkey, isSigner: false, isWritable: true }],
 		programId,
 		data: instructionData,
 	});
@@ -258,7 +255,7 @@ export async function completeTask(name: string, lat: string, lng: string, point
  */
 export async function readTask(): Promise<void> {
 	const taskInfo = await connection.getAccountInfo(taskPubkey);
-	if(taskInfo === null) {
+	if (taskInfo === null) {
 		throw 'Error: cannot find the task account';
 	}
 	console.log('task is');

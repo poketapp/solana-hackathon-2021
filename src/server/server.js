@@ -49,7 +49,7 @@ app.post('/create', (req, res) => {
 	console.log(req.body);
 
 	body = req.body;
-	arg = body.name + ' ' + body.lat + ' ' + body.lng + ' ' + body.points + ' ' + body.desc + ' ' + body.img;
+	arg = body.name + ' ' + body.lat + ' ' + body.lng + ' ' + body.points + ' ' + body.desc + ' ' + 'test_image';
 	console.log('arg is ');
 	console.log(arg);
 

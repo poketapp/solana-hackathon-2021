@@ -15,7 +15,7 @@ export class HomeService {
       'lng': lng,
       'points': points,
       'desc': desc,
-      'img': img,
+      'img': 'img',
     }
 
     const url = 'http://127.0.0.1:3000/create';
@@ -26,8 +26,10 @@ export class HomeService {
       .post(url, JSON.stringify(data), options)
       .subscribe((res) => {
         console.log(res);
+	data.img = img;
         this.taskCreated.emit(data);
       });
+      data.img = img;
       this.taskCreated.emit(data);
   };
 

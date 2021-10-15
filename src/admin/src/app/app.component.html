@@ -1,10 +1,15 @@
 <mat-sidenav-container fullscreen>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <div>
-      </div>
+      <div style="color: white">MapTask Creator</div>
       <span class="toolbar-spacer"></span>
-      <button mat-icon-button aria-label="Logout" *ngIf="isLoggedIn" (click)="logout()" matTooltip="Logout">
+      <button
+        mat-icon-button
+        aria-label="Logout"
+        *ngIf="isLoggedIn"
+        (click)="logout()"
+        matTooltip="Logout"
+      >
         <mat-icon>logout</mat-icon>
       </button>
     </mat-toolbar-row>

@@ -1,10 +1,10 @@
-<agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng" [styles]='mapStyles'>
+<agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng" [styles]="mapStyles">
   <agm-marker
     *ngFor="let marker of markers"
     [latitude]="marker.latitude"
     [longitude]="marker.longitude"
     (markerClick)="markerClicked(marker, infoWindow)"
-    iconUrl="assets/markers/{{ marker.marker }}.png"
+    iconUrl="assets/markers/red.png"
   >
     <agm-info-window [disableAutoPan]="false" #infoWindow class="container">
       <div class="row merchant-detail">

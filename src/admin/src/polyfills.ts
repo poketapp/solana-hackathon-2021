@@ -71,6 +71,3 @@ Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 */
 
-(window as any).global = window;
-(window as any).global.Buffer = require('buffer').Buffer;
-(window as any).process = {};

@@ -17,7 +17,7 @@ export class HomeService {
       'desc': desc
     }
 
-    const url = 'localhost:3000/create';
+    const url = 'http://127.0.0.1:3000/create';
     const options = {
       headers: { 'Content-Type': 'application/json' },
     };
@@ -27,6 +27,7 @@ export class HomeService {
         console.log(res);
         this.taskCreated.emit(data);
       });
+      this.taskCreated.emit(data);
   };
 
 }

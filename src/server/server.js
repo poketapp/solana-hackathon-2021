@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { exec } = require("child_process");
-
+const cors = require('cors');
 
 var jsonParser = bodyParser.json()
 
 var app = express();
 app.use(jsonParser);
+app.use(cors({origin: 'http://localhost:8080'}));
 
 app.get('/', (req, res) => {
 	exec("cd ../", (error, stdout, stderr) => {
@@ -85,7 +86,7 @@ app.post('/create', (req, res) => {
 		}
 		console.log(`stdout: ${stdout}`);
 	});
-
-	res.send('Hello Express')
+res.setHeader('Access-Control-Allow-Origin', '*');
+	res.send(200)
 });
 app.listen(process.env.PORT || 3000)

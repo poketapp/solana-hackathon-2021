@@ -79,12 +79,15 @@ cd src/server
 nodemon server.js
 ```
 
-### Run the client
+### Client to create a task
 ```bash
 cd src/admin
 npm install
 ng serve --port 8080
 ```
+
+### Client to complete a task
+Please refer to https://github.com/poketapp/solana-react
 
 ### Entrypoint
 

@@ -1,11 +1,11 @@
 # Solana Hackathon
 
-This project uses Solana to create an app where one set of users can create "tasks" for other users to "complete" and get rewarded
+This project uses Solana to allow users to create "tasks" for other users to "complete" and, in turn, get rewarded
 
 The project comprises of:
 
 * An on-chain program to create and complete tasks
-* A client that can create, complete and print tasks
+* A client that can create a task
 
 ## Quick Start
 
@@ -72,46 +72,18 @@ npm run build:program-rust
 solana program deploy dist/program/helloworld.so
 ```
 
-### Run the JavaScript client
+### Start the server
 
 ```bash
-npm run start
+cd src/server
+nodemon server.js
 ```
 
-### Expected output
-
-Public key values will differ:
-
+### Run the client
 ```bash
-Let's say hello to a Solana account...
-Connection to cluster established: http://localhost:8899 { 'feature-set': 1140394761, 'solana-core': '1.7.11' }
-Using account AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9 containing 499999999.0644357 SOL to pay for fees
-Using program 25kEfrcKK3doqr97VAWaLLcz43y3JP2NX4F2RmMppvAm
-Creating Task
-Reading Task
-task is
-235
-8snqMyRx7EWAvMjoJYWdXAJokuv1ezFTVLdvzre1gyTo is Task {
-  name: 'Solana Task',
-  lat: '78.1',
-  lng: '77.0',
-  points: '250',
-  desc: 'This is a test task for the Solana Hackathon',
-  completedBy: '00000000000000000000000000000000000000000000'
-}
-Completing task
-Reading Task
-task is
-235
-8snqMyRx7EWAvMjoJYWdXAJokuv1ezFTVLdvzre1gyTo is Task {
-  name: 'Solana Task',
-  lat: '78.1',
-  lng: '77.0',
-  points: '250',
-  desc: 'This is a test task for the Solana Hackathon',
-  completedBy: 'AvVAd14AQ6hAvMVjJn8WVkc5Mya29xPksgFAaEKGNeM9'
-}
-Success
+cd src/admin
+npm install
+ng serve --port 8080
 ```
 
 ### Entrypoint

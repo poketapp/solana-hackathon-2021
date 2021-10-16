@@ -119,11 +119,3 @@ calling
 ### Query the task
 
 The client then reads the task
-
-### Complete the task
-
-The client then simulates "completing" the task
-
-### Query the task
-
-The client then again reads the task to see updates made as part of task "completion"
